@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Hugo English Club - Danang University of Technology";
+}
+
+<h2>Word Scrambler</h2>
+
+
+@using (Html.BeginForm("Scramble", "WordScrambler", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="form-group">
+                <label for="fromLeft">Left letters to skip</label>
+                <input id="fromLeft" name="fromLeft" type="number" class="form-control" value="1" />
+            </div>
+            <div class="form-group">
+                <label for="fromRight">Right letters to skip</label>
+                <input id="fromRight" name="fromRight" type="number" class="form-control" value="1" />
+            </div>
+            <div class="from-group">
+                <input id="toCapsOriginal" name="toCapsOriginal" type="checkbox" value="true" checked />
+                <label for="toCapsOriginal">Capitalize original words</label>
+            </div>
+            <div class="from-group">
+                <input id="toCapsResult" name="toCapsResult" type="checkbox" value="true" checked/>
+                <label for="toCapsResult">Capitalize scrambled words</label>
+            </div>
+            <div class="from-group">
+                <input id="scrambleSentence" name="scrambleSentence" type="checkbox" value="true" />
+                <label for="scrambleSentence">Input as paragraph</label>
+            </div>
+            <button type="submit" class="btn btn-success SubmitButton">Scramble</button>
+        </div>
+        <div class="col-sm-9 col-md-9 col-lg-9">
+            <div class="form-group">
+                <label for="wordsInput">Place the list of word (or sentence) need to be scrambled, each word (or sentence) in a line.</label>
+                <textarea class="form-control" id="wordsInput" name="wordsInput" rows="12" required></textarea>
+            </div>
+        </div>
+    </div>
+}

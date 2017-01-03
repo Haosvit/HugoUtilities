@@ -1,0 +1,46 @@
+﻿@using WordScrambler.Models
+@model ICollection<WordScrambler.Models.Word>
+@{
+   ViewBag.Title = "Hugo English Club - Danang University of Technology";
+}
+
+<h2>Result</h2>
+<p>@Model.Count @(Model.Count < 2 ? "word was" : "words were") scrambled.</p>
+
+@if (!ViewBag.IsScrambleSentence)
+{
+    <table class="table">
+        <tr>
+            <th>No.</th>
+            <th>Origin</th>
+            <th>Scrambled</th>
+        </tr>
+        @{ int i = 0;}
+        @foreach (Word w in Model)
+        {
+            <tr>
+                <td>@(++i)</td>
+                <td>@w.Origin</td>
+                <td>@w.Scrambled</td>
+            </tr> }
+    </table>
+            }
+            else
+            {
+                string result = "";
+                string originString = "";
+                foreach (Word w in Model)
+                {
+                    result += w.Scrambled;
+                    result += " ";
+
+                    originString += w.Origin;
+                    originString += " ";
+                }
+                <label>Origin</label>
+                <p class="OriginInput">@originString</p>
+                <label>Scrambled</label>
+                <textarea class="form-control" rows="12">@result</textarea>
+}
+
+

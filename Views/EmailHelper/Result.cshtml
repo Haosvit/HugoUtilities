@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Hugo English Club - Danang University of Technology";
+}
+<h3>@ViewBag.SentAmong @(ViewBag.SentAmong > 1 ? "mails have" : "mail has") been sent successfully!</h3>
+@if ((ViewBag.ErrorEmails as List<string>).Count > 0)
+{
+    foreach (string m in ViewBag.ErrorEmails)
+    {
+        <label>Failed recipients</label>
+        <ul>
+            <li>@m</li>
+        </ul>
+    }
+}

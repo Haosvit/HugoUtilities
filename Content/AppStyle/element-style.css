@@ -1,0 +1,10 @@
+﻿body textarea {
+  width: 100%; }
+
+body .SubmitButton {
+  margin-top: 20px;
+  width: 120px; }
+
+body .note-editable.panel-body {
+  height: 300px; }
+

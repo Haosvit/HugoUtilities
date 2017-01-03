@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Hugo English Club - Danang University of Technology";
+}
+<link href="~/Content/AppStyle/SummerNote/summernote.css" rel="stylesheet">
+<h2>Send Email</h2>
+<form method="post" action="/EmailHelper/Send" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label for="fromAddress">Email *</label>
+                <input type="email" class="form-control" id="fromAddress" name="fromAddress" placeholder="Email" value="hugoclub.dut@gmail.com" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="attachmentInput">The first round result *</label>
+                <input type="file" id="attachmentInput" name="attachment" required />
+            </div>
+
+                <input type="submit" class="btn btn-success SubmitButton" onclick="return sendForm()" value="Send" />
+            <hr />
+            <div>
+                <label>Help</label><br />
+                Use <b>%Name%</b> to mark name.<br />
+                Use <b>%Time%</b> to mark time.<br />Time would look like <b>WED (21/12/2017), 15:00 - 15:20</b>.<br /><br />
+                <label>Excel file with format:</label><br />
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Full name</td>
+                        <td>Email</td>
+                        <td>Dow</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Hao</td>
+                        <td>xyz@abc</td>
+                        <td>Wednesday</td>
+                        <td>21/12/2017</td>
+                        <td>15:00 - 15:20</td>
+                    </tr>
+                </table>
+
+                <a href="~/Content/ExcelTemplates/ResultSheetTemplate.xlsx">Download template</a>
+            </div>
+        </div>
+        <div class="col-sm-8 col-sm-8 col-md-8 col-lg-8">
+            <div class="form-group">
+                <label for="subject">Subject *</label>
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="emailContentInput">Content *</label>
+                <div id="emailContentInput"></div>
+                <textarea name="content" id="emailContent" style="display: none"></textarea>
+            </div>
+        </div>
+    </div>
+   
+</form>
+
+@section Scripts{
+    <script src="~/Scripts/App/summernote.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#emailContentInput').summernote({
+                toolbar: [
+                    ['fontstyle', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                    ['insert', ['link', 'table', 'hr']],
+                    ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
+                    ['misc', ['undo', 'redo']]
+                ]
+            });
+        });
+
+        function sendForm() {
+            if (validateForm()) {
+                var productDetailHtml = $('#emailContentInput').summernote('code');
+                $('#emailContent').text(productDetailHtml);               
+                return true;
+            }
+            return false;
+        }
+
+        function validateForm() {
+            return true;
+        }
+        
+    </script>
+}
